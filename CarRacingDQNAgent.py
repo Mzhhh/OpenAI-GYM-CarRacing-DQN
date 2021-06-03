@@ -55,7 +55,7 @@ class CarRacingDQNAgent:
 
     def act(self, state):
         if np.random.rand() > self.epsilon:
-            act_values = self.model.predict(np.expand_dims(state, axis=0))
+            act_values = self.model.predict_on_batch(np.expand_dims(state, axis=0))
             action_index = np.argmax(act_values[0])
         else:
             action_index = random.randrange(len(self.action_space))
