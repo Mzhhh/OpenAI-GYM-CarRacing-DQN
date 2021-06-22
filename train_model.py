@@ -19,7 +19,13 @@ if __name__ == '__main__':
     parser.add_argument('-s', '--start', type=int, help='The starting episode, default to 1.')
     parser.add_argument('-e', '--end', type=int, help='The ending episode, default to 1000.')
     parser.add_argument('-p', '--epsilon', type=float, default=1.0, help='The starting epsilon of the agent, default to 1.0.')
+    parser.add_argument('-v', '--virtual_display', action='store_true')
     args = parser.parse_args()
+
+    if args.virtual_display:
+        from pyvirtualdisplay import Display
+        display = Display(visible=0, size=(400, 300))
+        display.start()
 
     env = gym.make('CarRacing-v0')
     agent = CarRacingDQNAgent(epsilon=args.epsilon)
