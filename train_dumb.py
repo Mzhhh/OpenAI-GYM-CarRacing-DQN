@@ -49,8 +49,9 @@ if __name__ == '__main__':
 
     for e in range(STARTING_EPISODE, ENDING_EPISODE+1):
         init_state = env.reset()
-        for _ in range(START_STEP):
-            init_state, _, _, _ = env.step(DEFAULT_ACTION)
+        if args.skip_start:
+            for _ in range(START_STEP):
+                init_state, _, _, _ = env.step(DEFAULT_ACTION)
         init_state = process_state_image(init_state)
 
         total_reward = 0
